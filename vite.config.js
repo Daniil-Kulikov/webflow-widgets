@@ -3,9 +3,9 @@ import { defineConfig } from "vite";
 export default defineConfig({
   build: {
     lib: {
-      entry: "src/index.js",
-      name: "WWWLogo",
-      fileName: () => "www-logo.min.js",
+      entry: "src/FlowFX.js",
+      name: "FlowFX",
+      fileName: () => "flowfx.min.js",
       formats: ["iife"]
     },
     outDir: "dist",
