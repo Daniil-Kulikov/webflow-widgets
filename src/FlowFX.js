@@ -1,4 +1,5 @@
 import Viewport from "./core/Viewport.js";
+import { mountAll as mountAllDataObjects } from "./data/DataAPI.js";
 import Extrude from "./objects/Extrude.js";
 import MaterialFactory from "./materials/MaterialFactory.js";
 
@@ -119,6 +120,16 @@ class FlowFX {
 
     this.objects.clear();
     this.viewport.destroy();
+  }
+
+  /**
+   * Mounts FlowFX objects declared with HTML data attributes.
+   *
+   * @param {ParentNode | Element} [root=document] - Root element or document to scan.
+   * @returns {Promise<Array<{element: Element, flowfx: FlowFX, object: Extrude}>>} Mounted objects.
+   */
+  static mountAll(root) {
+    return mountAllDataObjects(FlowFX, root);
   }
 }
 
