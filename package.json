@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:esm && npm run build:cdn",
+    "build:esm": "vite build --emptyOutDir true --mode esm",
+    "build:cdn": "vite build --mode cdn",
     "preview": "vite preview"
   },
   "devDependencies": {

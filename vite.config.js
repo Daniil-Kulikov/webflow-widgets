@@ -1,14 +1,18 @@
 import { defineConfig } from "vite";
 
-export default defineConfig({
+const sharedBuildOptions = {
+  outDir: "dist",
+  emptyOutDir: false,
+};
+
+export default defineConfig(({ mode }) => ({
   build: {
+    ...sharedBuildOptions,
     lib: {
-      entry: "src/FlowFX.js",
+      entry: mode === "cdn" ? "src/browser.js" : "src/FlowFX.js",
       name: "FlowFX",
-      fileName: () => "flowfx.min.js",
-      formats: ["iife"]
+      fileName: () => mode === "cdn" ? "flowfx.min.js" : "flowfx.es.js",
+      formats: [mode === "cdn" ? "iife" : "es"],
     },
-    outDir: "dist",
-    emptyOutDir: true
-  }
-});
+  },
+}));
